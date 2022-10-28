@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
   const [searchText, setSearchText] = useState();
   const [newData, setNewData] = useState();
   const [readMore, setReadMore] = useState(false)
+  const navigate=useNavigate()
   const newsDataFromApi = async () => {
     const API_KEY = "f3bec0d572254c0c95fa46e72a065627";
     let url = `https://newsapi.org/v2/everything?
@@ -62,7 +64,7 @@ q=${searchText}&page=1&apiKey=${API_KEY}`;
                 <li className="list-group-item">{item.source.name}  </li>
               </ul>
               <div className="card-body">
-                <button type="submit"   className="btn btn-primary  ">
+                <button type="submit" onClick={navigate("/detail/")}  className="btn btn-primary  ">
                   Ayrıntılar
                 </button>
               </div>
