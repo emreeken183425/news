@@ -1,10 +1,10 @@
 
 import './App.css';
-
+import AppRouter from './router/AppRouter.jsx'
 function App() {
   return (
     <div className="App">
-      <h1>merhaba      </h1>
+     <AppRouter />
     </div>
   );
 }
