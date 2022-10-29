@@ -1,79 +1,40 @@
-// import { useState } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import React from 'react'
+import { useLocation } from 'react-router-dom'
 
+const DetailPage = () => {
 
-// const Home = () => {
-//   //inputun içindeki değer için state oluşturduk  searchText
-//   const [searchText, setSearchText] = useState();
-//   const [newData, setNewData] = useState();
-//   const [readMore, setReadMore] = useState(false)
-//   const navigate=useNavigate()
-//   const newsDataFromApi = async () => {
-//     const API_KEY = "f3bec0d572254c0c95fa46e72a065627";
-//     let url = `https://newsapi.org/v2/everything?
-// q=${searchText}&page=1&apiKey=${API_KEY}`;
+const {state}=useLocation()
 
-//     try {
-//       //   const response = await axios.get(url);
-//       const { data } = await axios.get(url);
-//       setNewData(data.articles);
+console.log(state.item);
+  return (
+    <div className="container">
 
-//       console.log(newData);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+      <div className="jumbotron p-3 p-md-5  text-white rounded bg-dark" style={{backgroundImage:`url(${state.item.urlToImage}) `,height:"500px"  }} >
+        
+      </div>
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     newsDataFromApi();
-//     setSearchText("");
-//   };
+      <div className="row mb-2 mt-2 ">
+        <div className="col ">
+          <div className="card flex-md-row mb-4 box-shadow h-md-250">
+            <div className="card-body d-flex flex-column align-items-start">
+              <strong className="d-inline-block mb-2 text-primary">{state.item.author} </strong>
+              <h3 className="mb-0">
+                <a className="text-dark"  >{state.item.title} </a>
+              </h3>
+              <div className="mb-1 text-muted">{state.item.publishedAt.slice(0,10)} </div>
+              <p className="card-text mb-auto">{state.item.description}</p>
+              <p className="card-text mb-auto">{state.item.content.slice(5,200)}</p>
+            
 
-//   return (
-//     <>
-//       <div>
-//         <form className="search  " onSubmit={handleSubmit}>
-//           <input
-//             type="search"
-//             className="search-input  "
-//             placeholder="Search news..."
-//             onChange={(e) => setSearchText(e.target.value)}
-//           />
-//           <button type="submit" className="btn btn-success  ">
-//             Search
-//           </button>
-//         </form>
-//       </div>
+              <a href={state.item.url} target="blank" >Kaynağında görüntüle</a>
+            </div>
+            {/* <img className="card-img-right flex-auto d-none d-md-block"  style="width: 200px; height: 250px;" src={state.item.urlToImage}/> */}
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  )
+}
 
-//       <div className=" cardContainer row  justify-content-evenly align-items-center">
-//         {newData?.map((item, index) => {
-//           return (
-//             <div className="card col-sm-12 col-md-6 col-lg-4 p-3   " key={index}>
-//               <img src={item.urlToImage}  className="card-img-top" alt="..." />
-//               <div className="card-body">
-//                 <h5 className="card-title">{item.title} </h5>
-//                 <p className="card-text">{readMore ?  item.description : item.description.slice(0,100)+ "..."}
-//                 <button onClick={()=>setReadMore(!readMore) } >{readMore ? "show less" : "readmore" } </button>
-//                 </p>
-               
-//               </div>
-//               <ul className="list-group list-group-flush">
-//                 <li className="list-group-item">{item.publishedAt.slice(0,10)} </li>
-//                 <li className="list-group-item">{item.source.name}  </li>
-//               </ul>
-//               <div className="card-body">
-//                 <button type="submit" onClick={navigate("/detail/:id")}  className="btn btn-primary  ">
-//                   Ayrıntılar
-//                 </button>
-//               </div>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Home;
+export default DetailPage
