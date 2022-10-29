@@ -14,7 +14,7 @@ const Home = () => {
  const [pageSize, setPageSize] = useState(12)
 const navigate=useNavigate()
   const newsDataFromApi = async () => {
-    const API_KEY = "f3bec0d572254c0c95fa46e72a065627";
+    const API_KEY = "44e23dc79f324a2380981ce37f159336";
     let url = `https://newsapi.org/v2/everything?
 q=${searchText}&page=${page}&pageSize=${pageSize}&apiKey=${API_KEY}`;
 
