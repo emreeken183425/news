@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import img1 from "../assets/img1.jpg";
 
 const Home = () => {
-  //inputun içindeki değer için state oluşturduk  searchText
+
   const [searchText, setSearchText] = useState();
   const [newData, setNewData] = useState();
   const [readMore, setReadMore] = useState(false);
   const [page, setPage] = useState(1)
-  const [pageList, setPageList] = useState([])
+ 
  const [totalPage , setTotalPage ] = useState(1)
  const [pageSize, setPageSize] = useState(12)
 const navigate=useNavigate()
@@ -19,7 +19,7 @@ const navigate=useNavigate()
 q=${searchText}&page=${page}&pageSize=${pageSize}&apiKey=${API_KEY}`;
 
     try {
-      //   const response = await axios.get(url);
+      
       const { data } = await axios.get(url);
       setNewData(data.articles);
       setTotalPage(data.totalResults)
@@ -35,13 +35,7 @@ q=${searchText}&page=${page}&pageSize=${pageSize}&apiKey=${API_KEY}`;
     setSearchText("");
   };
 
-// if(newData){
- 
-//   for(let i=1 ; i<= Math.ceil(totalPage/pageSize);i++ ){
-//     setPageList([...pageList,i])
-//   }
-// }
-// console.log(pageList);
+
 
 
 
@@ -111,36 +105,31 @@ q=${searchText}&page=${page}&pageSize=${pageSize}&apiKey=${API_KEY}`;
         {newData && (
           <div className="d-flex justify-content-center " >
           <nav aria-label="Page navigation example  " className="text-center  " >
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#">
+            <ul className="pagination">
+              <li className="page-item">
+                <a className="page-link" href="#">
                   Previous
                 </a>
               </li>
                  
-              <li class="page-item">
-                <a class="page-link" href="#">
+              <li className="page-item">
+                <a className="page-link" href="#">
                   1
                 </a>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
+              <li className="page-item">
+                <a className="page-link" href="#">
                   2
                 </a>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
+              <li className="page-item">
+                <a className="page-link" href="#">
                   3
                 </a>
               </li>
-              {/* {
-                 
-                 Math.ceil(totalPage/pageSize)
-                
-                 
-                 } */}
-              <li class="page-item">
-                <a class="page-link" href="#">
+             
+              <li className="page-item">
+                <a className="page-link" href="#">
                   Next
                 </a>
               </li>

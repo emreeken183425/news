@@ -35,3 +35,7 @@ display: -webkit-box;
   padding: 5px;
   border-radius:  15px;
 }
+.detailContainer{
+  height: calc(100vh-200px);
+  
+}

@@ -1,15 +1,22 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useDataContext } from '../context/DataContext';
 
 const DetailPage = () => {
 
 const {state}=useLocation()
 
-console.log(state.item);
-  return (
-    <div className="container">
+const navigate=useNavigate()
+const {favourites,setfavourites }=useDataContext
+const handleFavourite=(state)=>{
+  setfavourites([...favourites,state])
+  navigate("/favoriler")
+}
 
-      <div className="jumbotron p-3 p-md-5  text-white rounded bg-dark" style={{backgroundImage:`url(${state.item.urlToImage}) `,height:"500px"  }} >
+  return (
+    <div className="container detailContainer">
+
+      <div className="jumbotron p-3 p-md-5  text-white rounded bg-dark" style={{backgroundImage:`url(${state.item.urlToImage}) `,height:"500px"   }} >
         
       </div>
 
@@ -25,10 +32,26 @@ console.log(state.item);
               <p className="card-text mb-auto">{state.item.description}</p>
               <p className="card-text mb-auto">{state.item.content.slice(5,200)}</p>
             
-
-              <a href={state.item.url} target="blank" >Kaynağında görüntüle</a>
+              <div>
+              <button
+                  onClick={() => navigate("/")}
+                 
+                  className="btn btn-success ms-3 "
+                >
+                  Home
+                </button>
+                <button
+                  onClick={()=>handleFavourite(state)}
+                  
+                  className="btn btn-success ms-3 "
+                >
+                  Add Favourite
+                </button>
+               
+              <a href={state.item.url} target="blank" >News Source</a>
+              </div>
             </div>
-            {/* <img className="card-img-right flex-auto d-none d-md-block"  style="width: 200px; height: 250px;" src={state.item.urlToImage}/> */}
+            
           </div>
         </div>
        
